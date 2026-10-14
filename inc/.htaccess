@@ -1,0 +1,2 @@
+# Nadie debe abrir los archivos de inc/ directo en el navegador; solo se cargan con require desde las paginas.
+Require all denied
