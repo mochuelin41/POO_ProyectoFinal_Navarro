@@ -1,0 +1,641 @@
+/*
+ * estilos.css - Taller ICNO
+ * Estilo premium automotriz: fondo negro, superficies de carbon, un acento
+ * ambar calido y tipografia Sora (titulos) con Manrope (texto). Inspirado en
+ * las landing de detailing de autos: oscuro, limpio y con una foto que manda.
+ */
+
+/* Variables de color. Un solo acento (ambar) en toda la pagina. */
+:root {
+    --negro:    #0b0b0c;   /* fondo general */
+    --negro-2:  #111113;   /* superficies */
+    --carbon:   #17171a;   /* filas y campos */
+    --linea:    #262629;   /* bordes finos */
+    --plata:    #f4f2ef;   /* texto principal */
+    --gris:     #a1a0a3;   /* texto secundario */
+    --ambar:    #e0913a;   /* acento */
+    --ambar-2:  #eda455;   /* acento al pasar el mouse */
+    --oliva:    #8aa06a;   /* solo el punto del tipo "preventivo" */
+
+    --radio: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Manrope', 'Segoe UI', Arial, sans-serif;
+    background: var(--negro);
+    color: var(--plata);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Titulos con Sora */
+h1, h2, .marca-texto {
+    font-family: 'Sora', 'Segoe UI', Arial, sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- BARRA DEL TALLER (navbar con efecto glass) ----------
+   El fondo semitransparente + backdrop-filter deja ver borroso lo que pasa
+   por detras (la foto del carrusel), como un vidrio esmerilado. */
+.cabecera {
+    background: rgba(11,11,12,0.55);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* Logo del taller junto al nombre */
+.marca { display: flex; align-items: center; gap: 12px; }
+.marca-logo { height: 38px; width: auto; }
+
+/* Lado derecho de la barra: el menu y el logo de la universidad */
+.nav-derecha {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+.nav-idci {
+    height: 30px;
+    width: auto;
+    opacity: 0.9;
+    padding-left: 24px;
+    border-left: 1px solid var(--linea);
+}
+
+.cabecera-interna {
+    max-width: 1760px;
+    margin: 0 auto;
+    padding: 18px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.marca { text-decoration: none; }
+
+.marca-texto {
+    color: var(--plata);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.menu {
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    color: var(--gris);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+
+.menu a:hover { color: var(--plata); }
+.menu a.activo { color: var(--ambar); }
+
+/* ---------- CONTENIDO ---------- */
+.contenido {
+    max-width: 1760px;
+    margin: 34px auto;
+    padding: 0 48px;
+}
+
+.titulo-pagina {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+/* ---------- HERO: CARRUSEL DE SERVICIOS (a todo el ancho) ----------
+   El truco width:100vw con los margenes negativos saca el carrusel del
+   contenedor y lo estira de borde a borde de la ventana. */
+.hero-carrusel {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: -34px;        /* pega el hero al menu, sin hueco arriba */
+    margin-bottom: 56px;
+    overflow: hidden;
+    min-height: 560px;
+    border-bottom: 1px solid var(--linea);
+}
+
+/* Cada slide ocupa todo el hero; solo el activo se ve (con un fundido). */
+.hero-carrusel .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.hero-carrusel .slide.activo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.slide-texto {
+    padding: 48px 52px;
+    max-width: 560px;
+}
+
+.slide-eyebrow {
+    color: var(--ambar);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.slide-texto h1 {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1.06;
+}
+
+.slide-desc {
+    color: var(--gris);
+    font-size: 17px;
+    margin-top: 14px;
+    max-width: 40ch;
+}
+
+.slide-precio {
+    color: var(--plata);
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 14px;
+}
+
+.slide-texto .boton { margin-top: 22px; }
+
+/* Flechas juntas en la esquina de abajo a la derecha, para que no tapen
+   el texto del slide (que va a la izquierda). */
+.carrusel-flecha {
+    position: absolute;
+    bottom: 24px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--plata);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.15s;
+}
+.carrusel-flecha:hover { background: var(--ambar); color: #201203; }
+.carrusel-flecha.izq { right: 82px; }
+.carrusel-flecha.der { right: 24px; }
+
+/* Puntos indicadores */
+.carrusel-puntos {
+    position: absolute;
+    bottom: 20px;
+    left: 52px;
+    display: flex;
+    gap: 9px;
+    z-index: 3;
+}
+.carrusel-puntos .punto {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.15s, width 0.15s;
+}
+.carrusel-puntos .punto.activo {
+    background: var(--ambar);
+    width: 26px;
+    border-radius: 5px;
+}
+
+/* ---------- SECCIONES DE LA LANDING ---------- */
+.seccion { margin-bottom: 56px; }
+
+.seccion-titulo {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+/* Tarjetas de servicio con foto */
+.grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.carta-servicio {
+    background: var(--negro-2);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: transform 0.15s, border-color 0.15s;
+}
+.carta-servicio:hover {
+    transform: translateY(-4px);
+    border-color: var(--ambar);
+}
+
+.carta-foto {
+    height: 190px;
+    background-size: cover;
+    background-position: center;
+}
+
+.carta-cuerpo { padding: 18px 18px 22px; }
+.carta-cuerpo h3 { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 600; }
+.carta-cuerpo p { color: var(--gris); font-size: 14px; margin-top: 6px; }
+.carta-precio {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--ambar);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Pasos */
+.grid-pasos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+.paso {
+    background: var(--negro-2);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 26px 24px;
+}
+.paso-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(224,145,58,0.15);
+    color: var(--ambar);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+.paso h3 { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 600; }
+.paso p { color: var(--gris); font-size: 15px; margin-top: 6px; }
+
+/* Cierre */
+.cierre {
+    text-align: center;
+    padding: 56px 24px;
+    background: var(--negro-2);
+    border: 1px solid var(--linea);
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+.cierre h2 { font-size: 30px; font-weight: 700; margin-bottom: 22px; }
+.cierre .boton { justify-self: center; }
+
+/* ---------- PANELES ---------- */
+.panel {
+    background: var(--negro-2);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.panel h2 {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.panel-editar { border-left: 3px solid var(--ambar); }
+
+.lista-ayuda { padding-left: 20px; color: var(--gris); }
+.lista-ayuda li { margin-bottom: 8px; }
+.lista-ayuda strong { color: var(--plata); font-weight: 600; }
+
+/* ---------- FORMULARIOS ---------- */
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.formulario label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: var(--plata);
+    font-size: 14px;
+    gap: 7px;
+}
+
+.formulario input,
+.formulario select {
+    padding: 12px 14px;
+    border: 1px solid var(--linea);
+    border-radius: 9px;
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--carbon);
+    color: var(--plata);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.formulario input::placeholder { color: #6c6b6f; }
+
+.formulario input:focus,
+.formulario select:focus {
+    outline: none;
+    border-color: var(--ambar);
+    box-shadow: 0 0 0 3px rgba(224,145,58,0.18);
+}
+
+.nota {
+    margin-top: 14px;
+    color: var(--gris);
+    font-size: 13px;
+}
+.nota a { color: var(--ambar); }   /* los enlaces dentro de una nota usan el color de acento, no el azul del navegador */
+
+/* ---------- BOTONES ---------- */
+.boton {
+    grid-column: 1 / -1;
+    justify-self: start;
+    background: var(--ambar);
+    color: #201203;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.boton:hover { background: var(--ambar-2); }
+.boton:active { transform: translateY(1px); }
+
+.boton-gris {
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid var(--linea);
+}
+.boton-gris:hover { color: var(--plata); border-color: var(--gris); }
+
+.fila-botones {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ---------- TABLAS ---------- */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla th {
+    text-align: left;
+    padding: 12px 14px;
+    color: var(--gris);
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--linea);
+}
+
+.tabla td {
+    padding: 15px 14px;
+    border-bottom: 1px solid var(--linea);
+    font-size: 15px;
+}
+
+.tabla tbody tr:last-child td { border-bottom: none; }
+.tabla tbody tr:hover td { background: var(--carbon); }
+
+.costo-final {
+    font-weight: 700;
+    color: var(--ambar);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- ETIQUETAS DE TIPO (punto de color + nombre) ---------- */
+.etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--plata);
+}
+
+.etiqueta::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gris);
+}
+
+.etiqueta-preventivo::before { background: var(--oliva); }
+.etiqueta-correctivo::before { background: var(--ambar); }
+
+/* ---------- ACCIONES DE LA TABLA ---------- */
+.acciones { display: flex; gap: 18px; }
+
+.mini-boton {
+    color: var(--gris);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+.mini-boton:hover { color: var(--plata); }
+.mini-rojo:hover { color: var(--ambar-2); }
+
+/* ---------- AVISOS ---------- */
+.aviso {
+    background: rgba(224,145,58,0.10);
+    border: 1px solid rgba(224,145,58,0.35);
+    color: var(--ambar-2);
+    padding: 13px 18px;
+    border-radius: 9px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.vacio { color: var(--gris); }
+
+/* ---------- PIE ---------- */
+.pie {
+    max-width: 1760px;
+    margin: 40px auto 0;
+    padding: 28px 48px 44px;
+    border-top: 1px solid var(--linea);
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.pie-logo {
+    height: 34px;
+    width: auto;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    display: block;
+    opacity: 0.9;
+}
+
+/* ---------- TARJETAS DE RESUMEN (panel admin e inicio cliente) ---------- */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.tarjeta {
+    background: var(--negro-2);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--plata);
+    transition: border-color 0.15s, transform 0.15s;
+}
+.tarjeta:hover { border-color: var(--ambar); transform: translateY(-3px); }
+.tarjeta-numero {
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ambar);
+    font-variant-numeric: tabular-nums;
+}
+.tarjeta-titulo { display: block; margin-top: 4px; color: var(--gris); font-size: 15px; }
+
+/* ---------- LOGIN Y REGISTRO ---------- */
+.caja-auth {
+    max-width: 420px;
+    margin: 40px auto;
+    background: var(--negro-2);
+    border: 1px solid var(--linea);
+    border-radius: 16px;
+    padding: 36px 34px;
+}
+.caja-auth h1 { font-size: 26px; font-weight: 600; margin-bottom: 22px; }
+.form-auth { display: flex; flex-direction: column; gap: 16px; }
+.form-auth label { display: flex; flex-direction: column; gap: 7px; font-size: 14px; font-weight: 600; }
+.form-auth input {
+    padding: 12px 14px;
+    border: 1px solid var(--linea);
+    border-radius: 9px;
+    background: var(--carbon);
+    color: var(--plata);
+    font-size: 15px;
+    font-family: inherit;
+}
+.form-auth input:focus { outline: none; border-color: var(--ambar); box-shadow: 0 0 0 3px rgba(224,145,58,0.18); }
+.form-auth .boton { justify-self: stretch; text-align: center; margin-top: 6px; }
+.auth-pie { margin-top: 20px; color: var(--gris); font-size: 14px; }
+.auth-pie a { color: var(--ambar); text-decoration: none; }
+.aviso-error {
+    background: rgba(220,80,60,0.12);
+    border-color: rgba(220,80,60,0.4);
+    color: #f0a090;
+    border-left-color: #dc503c;
+}
+
+/* ---------- COTIZAR ---------- */
+.campo-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    max-width: 460px;
+    margin-bottom: 22px;
+}
+.campo-simple select {
+    padding: 12px 14px;
+    border: 1px solid var(--linea);
+    border-radius: 9px;
+    background: var(--carbon);
+    color: var(--plata);
+    font-size: 15px;
+    font-family: inherit;
+}
+.etiqueta-campo { font-weight: 600; font-size: 14px; margin-bottom: 12px; }
+.lista-servicios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 22px; }
+.opcion-servicio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--linea);
+    border-radius: 10px;
+    background: var(--carbon);
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+.opcion-servicio:hover { border-color: var(--ambar); }
+.opcion-servicio input { width: 18px; height: 18px; accent-color: var(--ambar); }
+.opcion-servicio span { display: flex; flex-direction: column; }
+.opcion-servicio small { color: var(--gris); }
+
+/* ---------- ESTADOS DE COTIZACION ---------- */
+.cotiz-cabeza { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.cotiz-cabeza h2 { margin-bottom: 0; }
+.estado {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: capitalize;
+}
+.estado-pendiente { background: rgba(224,145,58,0.15); color: var(--ambar-2); }
+.estado-revisada  { background: rgba(120,170,90,0.18); color: #a5d081; }
+
+/* ---------- RESPONSIVO (celulares) ---------- */
+@media (max-width: 900px) {
+    .grid-servicios { grid-template-columns: repeat(2, 1fr); }
+    .tarjetas { grid-template-columns: 1fr; }
+    .lista-servicios { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+    .formulario { grid-template-columns: 1fr; }
+    .grid-servicios { grid-template-columns: 1fr; }
+    .grid-pasos { grid-template-columns: 1fr; }
+    .slide-texto { padding: 40px 28px; }
+    .slide-texto h1 { font-size: 34px; }
+    .carrusel-puntos { left: 28px; }
+    .titulo-pagina { font-size: 26px; }
+    .seccion-titulo { font-size: 24px; }
+}

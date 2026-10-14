@@ -1,0 +1,6 @@
+# Datos de conexion con contrasena: cada instalacion tiene el suyo (copiar de inc/config.ejemplo.php)
+inc/config.php
+# Archivos temporales del sistema operativo y editores
+Thumbs.db
+.DS_Store
+*.swp

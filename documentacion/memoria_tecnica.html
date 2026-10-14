@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Memoria técnica - Taller ICNO</title>
+<style>
+    /* Cada .hoja es una pagina al imprimir. Son 3 en total, como pide el profesor. */
+    @page { size: letter; margin: 0; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; margin: 0; line-height: 1.5; background: #fff; }
+    .hoja { width: 21.59cm; height: 27.94cm; margin: 0 auto; padding: 1.1cm 1.5cm; page-break-after: always; overflow: hidden; }
+    .hoja:last-child { page-break-after: auto; }
+    /* Portada */
+    .portada { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .portada img.logo { width: 130px; height: 130px; border-radius: 50%; margin-bottom: 18px; }
+    .portada img.idci { width: 150px; margin-bottom: 26px; }
+    .escuela { text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; font-size: 13px; }
+    .titulo { font-size: 36px; font-weight: 800; color: #1e3a8a; margin: 8px 0 2px; }
+    .materia { font-size: 18px; color: #334155; margin-bottom: 34px; }
+    .datos { font-size: 15px; margin-top: 6px; }
+    .datos b { color: #1e3a8a; }
+    .datos .autor { font-size: 20px; font-weight: 700; color: #0f172a; margin: 6px 0 14px; }
+    h2 { color: #1e3a8a; font-size: 16px; margin: 10px 0 4px; border-bottom: 2px solid #e2e8f0; padding-bottom: 3px; }
+    h2:first-child { margin-top: 0; }
+    p { margin: 4px 0; font-size: 12.3px; line-height: 1.42; }
+    code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; font-family: Consolas, monospace; }
+    pre { background: #f1f5f9; border-radius: 6px; padding: 6px 10px; font-size: 11px; font-family: Consolas, monospace; margin: 6px 0; line-height: 1.4; }
+    table.req { width: 100%; border-collapse: collapse; font-size: 11.6px; margin: 4px 0; }
+    table.req th, table.req td { border: 1px solid #cbd5e1; padding: 2px 6px; text-align: left; vertical-align: top; }
+    table.req th { background: #e8edf7; color: #1e3a8a; }
+    .captura { margin: 8px 0 4px; }
+    .captura img { width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; display: block; }
+    .pie-captura { font-size: 11.5px; color: #64748b; text-align: center; margin: 3px 0 8px; }
+    .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+</style>
+</head>
+<body>
+
+<!-- ======================= HOJA 1: PORTADA ======================= -->
+<div class="hoja portada">
+    <img class="logo" src="../img/logo.png" alt="Logo Taller ICNO">
+    <img class="idci" src="../img/idci.png" alt="IDCI">
+    <div class="escuela">Instituto de Desarrollo y Capacitaci&oacute;n Intensiva</div>
+    <div class="titulo">Taller ICNO</div>
+    <div class="materia">Memoria t&eacute;cnica &middot; Proyecto Final de Programaci&oacute;n Orientada a Objetos</div>
+    <div class="datos">
+        <b>Autor</b>
+        <div class="autor">Isaac Navarro</div>
+        <b>Tema:</b> 7 &middot; Taller mec&aacute;nico (veh&iacute;culos, servicios y cotizaciones)<br>
+        <b>Docente:</b> Lic. Reyes Jim&eacute;nez Amozoque&ntilde;o<br>
+        <b>Lenguaje:</b> PHP 8 con MySQL, interfaz HTML y CSS<br>
+        <b>Sistema en l&iacute;nea:</b> http://148.113.167.5<br>
+        <b>Fecha de entrega:</b> 23 de octubre de 2026
+    </div>
+</div>
+
+<!-- ======================= HOJA 2: EXPLICACION ======================= -->
+<div class="hoja">
+    <h2>De qu&eacute; trata el sistema</h2>
+    <p>Taller ICNO administra un taller mec&aacute;nico desde el navegador. Un <b>cliente</b> se registra, da de alta sus
+    veh&iacute;culos y pide cotizaciones eligiendo los servicios que necesita. El <b>administrador</b> mantiene el cat&aacute;logo
+    de servicios (el CRUD), consulta los veh&iacute;culos de los clientes y revisa las cotizaciones. Los datos se guardan en una
+    base de datos MySQL con cinco tablas; la clase <code>Taller</code> es la &uacute;nica que habla con ella y convierte cada fila en
+    un objeto, de modo que el resto del sistema trabaja solo con objetos.</p>
+
+    <h2>Por qu&eacute; usamos herencia aqu&iacute;</h2>
+    <p>El taller tiene dos realidades que comparten datos pero se comportan distinto, y eso es exactamente lo que resuelve
+    la herencia. La primera son los <b>servicios</b>: un preventivo y un correctivo tienen id, descripci&oacute;n y costo base,
+    pero cobran diferente. Por eso existe la clase padre <code>Servicio</code> con lo com&uacute;n, y dos hijas que la extienden:
+    <code>ServicioPreventivo</code> agrega el kilometraje y <code>ServicioCorrectivo</code> agrega las horas de mano de obra.
+    Cada hija llama a <code>parent::__construct()</code> para que el padre guarde lo suyo y no se repita c&oacute;digo.</p>
+    <p>La segunda son los <b>veh&iacute;culos</b>: <code>Vehiculo</code> guarda placas, marca, modelo, color, a&ntilde;o y kilometraje, y
+    sus cuatro hijas <code>Auto</code>, <code>Camioneta</code>, <code>Camion</code> y <code>Motocicleta</code> no agregan datos,
+    solo cambian el comportamiento. Esto muestra que heredar no es solo reutilizar atributos: es permitir que cada tipo
+    responda a su manera.</p>
+    <p>Esa respuesta distinta es el <b>polimorfismo</b>. <code>calcularCosto()</code> est&aacute; en <code>Servicio</code> y cada hija lo
+    reescribe con <code>#[\Override]</code>: el preventivo aplica 10% de descuento y el correctivo suma 250 pesos por hora.
+    <code>getFactor()</code> est&aacute; en <code>Vehiculo</code> y cada hija devuelve su factor: 1.0, 1.3, 1.6 y 0.7. Los dos se juntan
+    en una sola l&iacute;nea de <code>crearCotizacion()</code>, que no pregunta de qu&eacute; tipo es nada:</p>
+<pre>$total += $s->calcularCosto() * $vehiculo->getFactor();   // PHP llama la version correcta segun la clase real</pre>
+    <p>Un correctivo de $1,800 con 2 horas en una camioneta cuesta (1,800 + 500) &times; 1.3 = $2,990, como se ve en la captura
+    de la hoja 3. Al leer la base de datos, <code>Taller</code> mira la columna <code>tipo</code> y crea el objeto de la clase hija
+    correcta, as&iacute; la herencia se conserva aunque los datos vivan en una tabla.</p>
+
+    <h2>C&oacute;mo aplicamos el encapsulamiento</h2>
+    <p>Todos los atributos de las once clases son <code>private</code>. Nadie de afuera los modifica directo: para leerlos
+    hay getters y para cambiarlos hay setters, y dentro de los setters se usa <code>$this</code> para indicar que se modifica el
+    dato de ese objeto en particular. Por ejemplo, el costo base solo cambia con <code>setCostoBase()</code>; si ma&ntilde;ana hay
+    que validar que no sea negativo, se hace en ese &uacute;nico lugar. El caso m&aacute;s claro es <code>Taller</code>: su conexi&oacute;n
+    <code>$bd</code> es privada, ninguna p&aacute;gina escribe SQL, y todas las consultas usan <code>prepare()</code> con par&aacute;metros
+    <code>?</code> para evitar inyecci&oacute;n SQL. La contrase&ntilde;a de los usuarios se guarda cifrada con <code>password_hash()</code>
+    y los datos de conexi&oacute;n viven en <code>inc/config.php</code>, fuera del repositorio.</p>
+
+    <h2>D&oacute;nde se cumple cada requisito</h2>
+    <table class="req">
+        <tr><th style="width:22%">Requisito</th><th>D&oacute;nde est&aacute; (todo en <code>inc/taller.php</code>)</th></tr>
+        <tr><td>R1 &middot; 4+ clases</td><td>11 clases: Servicio, ServicioPreventivo, ServicioCorrectivo, Vehiculo, Auto, Camioneta, Camion, Motocicleta, Usuario, Cotizacion, Taller.</td></tr>
+        <tr><td>R2 &middot; Encapsulamiento</td><td>Atributos <code>private</code> con getters y setters que usan <code>$this</code>.</td></tr>
+        <tr><td>R3 &middot; Herencia</td><td>Dos jerarqu&iacute;as con <code>extends</code>: Servicio &rarr; 2 hijas; Vehiculo &rarr; 4 hijas.</td></tr>
+        <tr><td>R4 &middot; Polimorfismo</td><td><code>calcularCosto()</code> y <code>getFactor()</code> reescritos con <code>#[\Override]</code> y resultado distinto en cada hija.</td></tr>
+        <tr><td>R5 &middot; CRUD</td><td><code>agregarServicio()</code> INSERT, <code>getServicios()</code> SELECT, <code>modificarServicio()</code> UPDATE, <code>eliminarServicio()</code> DELETE; se usan desde <code>servicios.php</code>.</td></tr>
+        <tr><td>R6 &middot; UML</td><td><code>documentacion/diagrama_uml.pdf</code>, con las 11 clases, atributos, m&eacute;todos y relaciones.</td></tr>
+    </table>
+
+    <h2>Sobre el uso de inteligencia artificial</h2>
+    <p>Us&eacute; una herramienta de inteligencia artificial como apoyo para resolver dudas, depurar errores, mejorar el dise&ntilde;o
+    visual y revisar la documentaci&oacute;n, como lo permite el reglamento del proyecto. El dise&ntilde;o de las clases, las pruebas
+    de funcionamiento y esta explicaci&oacute;n los trabaj&eacute; y los entiendo; el c&oacute;digo est&aacute; comentado l&iacute;nea por l&iacute;nea
+    para poder explicar cualquier parte en la revisi&oacute;n.</p>
+</div>
+
+<!-- ======================= HOJA 3: CAPTURAS ======================= -->
+<div class="hoja">
+    <h2>El sistema corriendo</h2>
+
+    <div class="captura"><img src="capturas/memo_crud.png" alt="CRUD de servicios"></div>
+    <p class="pie-captura">Cat&aacute;logo de servicios del administrador (R5). El costo final lo calcula cada clase con su propia f&oacute;rmula:
+    el preventivo de $1,000 baja a $900 y el correctivo de $1,800 con 2 horas sube a $2,300. Cada fila tiene Editar y Eliminar.</p>
+
+    <div class="captura"><img src="capturas/memo_cotizacion.png" alt="Cotizaci&oacute;n con factor de veh&iacute;culo"></div>
+    <p class="pie-captura">Cotizaci&oacute;n de un cliente para una camioneta (factor 1.3). Cada subtotal es <code>calcularCosto() &times; getFactor()</code>:
+    el correctivo de $2,300 queda en $2,990. Aqu&iacute; se ven los dos polimorfismos a la vez.</p>
+
+    <div class="dos">
+        <div>
+            <div class="captura"><img src="capturas/memo_mis_autos.png" alt="Registro de veh&iacute;culos"></div>
+            <p class="pie-captura">El cliente registra su veh&iacute;culo y elige el tipo; seg&uacute;n el tipo se crea un Auto, Camioneta, Camion o Motocicleta.</p>
+        </div>
+        <div>
+            <div class="captura"><img src="capturas/memo_admin_cotizaciones.png" alt="Cotizaciones del administrador"></div>
+            <p class="pie-captura">El administrador ve las cotizaciones con su estado y las marca como revisadas.</p>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
