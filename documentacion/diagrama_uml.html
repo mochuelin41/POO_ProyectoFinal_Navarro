@@ -4,195 +4,248 @@
 <meta charset="UTF-8">
 <title>Diagrama UML - Taller ICNO</title>
 <style>
-  body { margin: 0; background: #fff; font-family: Arial, sans-serif; color: #111; }
-  .hoja { width: 1620px; margin: 0 auto; padding: 16px 0; }
-  h1 { text-align: center; font-size: 22px; margin: 6px 0 2px; }
-  p.sub { text-align: center; color: #555; margin: 0 0 10px; font-size: 13px; }
-  .leyenda { font-size: 12px; color: #555; text-align: center; margin-top: 10px; line-height: 1.5; }
+  body { margin: 0; background: #fff; font-family: 'Segoe UI', Arial, sans-serif; color: #111; }
+  .hoja { width: 2552px; margin: 0 auto; padding: 18px 0 14px; }
+  h1 { text-align: center; font-size: 30px; margin: 4px 0 2px; color: #1f4e79; font-weight: 800; }
+  p.sub { text-align: center; color: #555; margin: 0 0 14px; font-size: 14px; }
+  .leyenda { font-size: 13px; color: #444; text-align: center; margin-top: 10px; line-height: 1.55; }
   svg { display: block; margin: 0 auto; }
-  text { font-family: Arial, sans-serif; }
-  .nombre { font-weight: bold; font-size: 13.5px; }
-  .estereo { font-size: 11px; fill: #555; }
-  .miembro { font-size: 11px; }
-  .caja { fill: #fff; stroke: #1e3a8a; stroke-width: 1.8; }
-  .barra { fill: #e8edf7; stroke: #1e3a8a; stroke-width: 1.8; }
-  .sep { stroke: #1e3a8a; stroke-width: 1.2; }
-  .rel { stroke: #333; stroke-width: 1.5; fill: none; }
-  .dep { stroke: #555; stroke-width: 1.3; fill: none; stroke-dasharray: 6 4; }
-  .tri { fill: #fff; stroke: #333; stroke-width: 1.5; }
-  .rombo { fill: #333; stroke: #333; }
-  .reltxt { font-size: 10.5px; fill: #333; }
-  .bd { fill: #fff7e6; stroke: #b45309; stroke-width: 1.6; }
+  .nombre { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 19px; fill: #fff; }
+  .miembro { font-family: Consolas, 'Courier New', monospace; font-size: 12.2px; fill: #111; }
+  .attr { fill: #e8f0fb; }
+  .met { fill: #fff; }
+  .barra { fill: #1f4e79; }
+  .borde { fill: none; stroke: #1f4e79; stroke-width: 2.4; }
+  .sep { stroke: #1f4e79; stroke-width: 2; }
+  .rel { stroke: #1f4e79; stroke-width: 2; fill: none; }
+  .dep { stroke: #1f4e79; stroke-width: 1.8; fill: none; stroke-dasharray: 7 5; }
+  .tri { fill: #fff; stroke: #1f4e79; stroke-width: 2; }
+  .flecha { fill: #1f4e79; }
+  .rombo { fill: #1f4e79; stroke: #1f4e79; }
+  .mult { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 15px; fill: #c00000; }
+  .etq { font-family: 'Segoe UI', Arial, sans-serif; font-style: italic; font-size: 13px; fill: #222; }
+  .bd { fill: #fff7e6; stroke: #b45309; stroke-width: 2.2; }
+  .bdbarra { fill: #b45309; }
 </style>
 </head>
 <body>
 <div class="hoja">
-  <h1>Diagrama de clases &mdash; Taller ICNO</h1>
+  <h1>Diagrama de Clases UML &mdash; Taller ICNO</h1>
   <p class="sub">Proyecto Final de Programaci&oacute;n Orientada a Objetos &middot; Tema: Taller mec&aacute;nico &middot; Autor: Isaac Navarro &middot; Coincide con <b>inc/taller.php</b></p>
-  <svg width="1620" height="1180" viewBox="0 0 1620 1180" xmlns="http://www.w3.org/2000/svg">
-<rect class="caja" x="120" y="40" width="270" height="197" rx="3"/>
-<rect class="barra" x="120" y="40" width="270" height="30"/>
-<text class="nombre" x="255.0" y="58" text-anchor="middle">Servicio</text>
-<line class="sep" x1="120" y1="70" x2="390" y2="70"/>
-<text class="miembro" x="128" y="89">- id : int</text>
-<text class="miembro" x="128" y="104">- descripcion : string</text>
-<text class="miembro" x="128" y="119">- costoBase : float</text>
-<line class="sep" x1="120" y1="131" x2="390" y2="131"/>
-<text class="miembro" x="128" y="150">+ __construct(id, descripcion, costoBase)</text>
-<text class="miembro" x="128" y="165">+ calcularCosto() : float</text>
-<text class="miembro" x="128" y="180">+ getTipo() : string</text>
-<text class="miembro" x="128" y="195">+ getId() / setId()</text>
-<text class="miembro" x="128" y="210">+ getDescripcion() / setDescripcion()</text>
-<text class="miembro" x="128" y="225">+ getCostoBase() / setCostoBase()</text>
-<rect class="caja" x="800" y="40" width="330" height="227" rx="3"/>
-<rect class="barra" x="800" y="40" width="330" height="30"/>
-<text class="nombre" x="965.0" y="58" text-anchor="middle">Vehiculo</text>
-<line class="sep" x1="800" y1="70" x2="1130" y2="70"/>
-<text class="miembro" x="808" y="89">- id : int</text>
-<text class="miembro" x="808" y="104">- placas : string</text>
-<text class="miembro" x="808" y="119">- marca : string</text>
-<text class="miembro" x="808" y="134">- modelo : string</text>
-<text class="miembro" x="808" y="149">- color : string</text>
-<text class="miembro" x="808" y="164">- anio : int</text>
-<text class="miembro" x="808" y="179">- kilometraje : int</text>
-<line class="sep" x1="800" y1="191" x2="1130" y2="191"/>
-<text class="miembro" x="808" y="210">+ __construct(id, placas, marca, modelo, color, anio, km)</text>
-<text class="miembro" x="808" y="225">+ getFactor() : float</text>
-<text class="miembro" x="808" y="240">+ getTipo() : string</text>
-<text class="miembro" x="808" y="255">+ getters / setters de los 7 atributos</text>
-<rect class="caja" x="20" y="360" width="245" height="137" rx="3"/>
-<rect class="barra" x="20" y="360" width="245" height="30"/>
-<text class="nombre" x="142.5" y="378" text-anchor="middle">ServicioPreventivo</text>
-<line class="sep" x1="20" y1="390" x2="265" y2="390"/>
-<text class="miembro" x="28" y="409">- kilometraje : int</text>
-<line class="sep" x1="20" y1="421" x2="265" y2="421"/>
-<text class="miembro" x="28" y="440">+ __construct(id, desc, costo, km)</text>
-<text class="miembro" x="28" y="455">+ calcularCosto() : float  «override»</text>
-<text class="miembro" x="28" y="470">+ getTipo() : string  «override»</text>
-<text class="miembro" x="28" y="485">+ getKilometraje() / setKilometraje()</text>
-<rect class="caja" x="290" y="360" width="255" height="137" rx="3"/>
-<rect class="barra" x="290" y="360" width="255" height="30"/>
-<text class="nombre" x="417.5" y="378" text-anchor="middle">ServicioCorrectivo</text>
-<line class="sep" x1="290" y1="390" x2="545" y2="390"/>
-<text class="miembro" x="298" y="409">- horasManoObra : int</text>
-<line class="sep" x1="290" y1="421" x2="545" y2="421"/>
-<text class="miembro" x="298" y="440">+ __construct(id, desc, costo, horas)</text>
-<text class="miembro" x="298" y="455">+ calcularCosto() : float  «override»</text>
-<text class="miembro" x="298" y="470">+ getTipo() : string  «override»</text>
-<text class="miembro" x="298" y="485">+ getHorasManoObra() / setHorasManoObra()</text>
-<rect class="caja" x="640" y="360" width="200" height="107" rx="3"/>
-<rect class="barra" x="640" y="360" width="200" height="30"/>
-<text class="nombre" x="740.0" y="378" text-anchor="middle">Auto</text>
-<line class="sep" x1="640" y1="390" x2="840" y2="390"/>
-<text class="miembro" x="648" y="409">&#160;</text>
-<line class="sep" x1="640" y1="421" x2="840" y2="421"/>
-<text class="miembro" x="648" y="440">+ getFactor() : float  «override» = 1.0</text>
-<text class="miembro" x="648" y="455">+ getTipo() : string  «override»</text>
-<rect class="caja" x="855" y="360" width="200" height="107" rx="3"/>
-<rect class="barra" x="855" y="360" width="200" height="30"/>
-<text class="nombre" x="955.0" y="378" text-anchor="middle">Camioneta</text>
-<line class="sep" x1="855" y1="390" x2="1055" y2="390"/>
-<text class="miembro" x="863" y="409">&#160;</text>
-<line class="sep" x1="855" y1="421" x2="1055" y2="421"/>
-<text class="miembro" x="863" y="440">+ getFactor() : float  «override» = 1.3</text>
-<text class="miembro" x="863" y="455">+ getTipo() : string  «override»</text>
-<rect class="caja" x="1070" y="360" width="200" height="107" rx="3"/>
-<rect class="barra" x="1070" y="360" width="200" height="30"/>
-<text class="nombre" x="1170.0" y="378" text-anchor="middle">Camion</text>
-<line class="sep" x1="1070" y1="390" x2="1270" y2="390"/>
-<text class="miembro" x="1078" y="409">&#160;</text>
-<line class="sep" x1="1070" y1="421" x2="1270" y2="421"/>
-<text class="miembro" x="1078" y="440">+ getFactor() : float  «override» = 1.6</text>
-<text class="miembro" x="1078" y="455">+ getTipo() : string  «override»</text>
-<rect class="caja" x="1285" y="360" width="200" height="107" rx="3"/>
-<rect class="barra" x="1285" y="360" width="200" height="30"/>
-<text class="nombre" x="1385.0" y="378" text-anchor="middle">Motocicleta</text>
-<line class="sep" x1="1285" y1="390" x2="1485" y2="390"/>
-<text class="miembro" x="1293" y="409">&#160;</text>
-<line class="sep" x1="1285" y1="421" x2="1485" y2="421"/>
-<text class="miembro" x="1293" y="440">+ getFactor() : float  «override» = 0.7</text>
-<text class="miembro" x="1293" y="455">+ getTipo() : string  «override»</text>
-<rect class="caja" x="20" y="620" width="260" height="182" rx="3"/>
-<rect class="barra" x="20" y="620" width="260" height="30"/>
-<text class="nombre" x="150.0" y="638" text-anchor="middle">Usuario</text>
-<line class="sep" x1="20" y1="650" x2="280" y2="650"/>
-<text class="miembro" x="28" y="669">- id : int</text>
-<text class="miembro" x="28" y="684">- nombre : string</text>
-<text class="miembro" x="28" y="699">- correo : string</text>
-<text class="miembro" x="28" y="714">- rol : string  (admin | cliente)</text>
-<line class="sep" x1="20" y1="726" x2="280" y2="726"/>
-<text class="miembro" x="28" y="745">+ __construct(id, nombre, correo, rol)</text>
-<text class="miembro" x="28" y="760">+ esAdmin() : bool</text>
-<text class="miembro" x="28" y="775">+ getId() / getNombre()</text>
-<text class="miembro" x="28" y="790">+ getCorreo() / getRol()</text>
-<rect class="caja" x="320" y="620" width="330" height="197" rx="3"/>
-<rect class="barra" x="320" y="620" width="330" height="30"/>
-<text class="nombre" x="485.0" y="638" text-anchor="middle">Cotizacion</text>
-<line class="sep" x1="320" y1="650" x2="650" y2="650"/>
-<text class="miembro" x="328" y="669">- id : int</text>
-<text class="miembro" x="328" y="684">- vehiculo : Vehiculo</text>
-<text class="miembro" x="328" y="699">- servicios : Servicio[ ]</text>
-<text class="miembro" x="328" y="714">- total : float</text>
-<text class="miembro" x="328" y="729">- estado : string  (pendiente | revisada)</text>
-<text class="miembro" x="328" y="744">- fecha : string</text>
-<line class="sep" x1="320" y1="756" x2="650" y2="756"/>
-<text class="miembro" x="328" y="775">+ __construct(id, vehiculo, servicios, total, estado, fecha)</text>
-<text class="miembro" x="328" y="790">+ getId() / getVehiculo() / getServicios()</text>
-<text class="miembro" x="328" y="805">+ getTotal() / getEstado() / getFecha()</text>
-<rect class="caja" x="700" y="620" width="470" height="302" rx="3"/>
-<rect class="barra" x="700" y="620" width="470" height="30"/>
-<text class="nombre" x="935.0" y="638" text-anchor="middle">Taller</text>
-<line class="sep" x1="700" y1="650" x2="1170" y2="650"/>
-<text class="miembro" x="708" y="669">- bd : PDO   (conexión a MySQL)</text>
-<line class="sep" x1="700" y1="681" x2="1170" y2="681"/>
-<text class="miembro" x="708" y="700">+ __construct(bd)</text>
-<text class="miembro" x="708" y="715">+ registrarCliente(nombre, correo, clave) : bool</text>
-<text class="miembro" x="708" y="730">+ verificarLogin(correo, clave) : Usuario</text>
-<text class="miembro" x="708" y="745">+ buscarUsuarioPorId(id) / buscarUsuarioPorCorreo(correo)</text>
-<text class="miembro" x="708" y="760">+ agregarVehiculo(idUsuario, vehiculo, tipo)</text>
-<text class="miembro" x="708" y="775">+ getVehiculosDeUsuario(id) / getTodosVehiculos() / buscarVehiculo(id)</text>
-<text class="miembro" x="708" y="790">+ agregarServicio(servicio)                      «CREATE»</text>
-<text class="miembro" x="708" y="805">+ getServicios() / buscarServicio(id)            «READ»</text>
-<text class="miembro" x="708" y="820">+ modificarServicio(id, descripcion, costo)      «UPDATE»</text>
-<text class="miembro" x="708" y="835">+ eliminarServicio(id)                           «DELETE»</text>
-<text class="miembro" x="708" y="850">+ crearCotizacion(idUsuario, idVehiculo, idsServicios)</text>
-<text class="miembro" x="708" y="865">+ getCotizacionesDeUsuario(id) / getTodasCotizaciones()</text>
-<text class="miembro" x="708" y="880">+ marcarRevisada(idCotizacion)</text>
-<text class="miembro" x="708" y="895">- usuarioDesdeFila(f) / vehiculoDesdeFila(f)</text>
-<text class="miembro" x="708" y="910">- servicioDesdeFila(f) / cotizacionDesdeFila(f)</text>
-<path class="rel" d="M142.5,360 V298.5 H255.0 V249"/><polygon class="tri" points="255.0,237 247.0,250 263.0,250"/>
-<path class="rel" d="M417.5,360 V298.5 H255.0 V249"/><polygon class="tri" points="255.0,237 247.0,250 263.0,250"/>
-<path class="rel" d="M740.0,360 V313.5 H965.0 V279"/><polygon class="tri" points="965.0,267 957.0,280 973.0,280"/>
-<path class="rel" d="M955.0,360 V313.5 H965.0 V279"/><polygon class="tri" points="965.0,267 957.0,280 973.0,280"/>
-<path class="rel" d="M1170.0,360 V313.5 H965.0 V279"/><polygon class="tri" points="965.0,267 957.0,280 973.0,280"/>
-<path class="rel" d="M1385.0,360 V313.5 H965.0 V279"/><polygon class="tri" points="965.0,267 957.0,280 973.0,280"/>
-<path class="rel" d="M380,620 V178.5 H389"/>
-<polygon class="rombo" points="380,620 374,610 380,600 386,610"/>
-<text class="reltxt" x="396" y="172.5">1..*  servicios</text>
-<path class="rel" d="M650,787 H678 V193.5 H799"/>
-<polygon class="rombo" points="650,787 660,781 670,787 660,793"/>
-<text class="reltxt" x="704" y="187.5">1  vehiculo</text>
-<path class="dep" d="M700,882 H651"/>
-<text class="reltxt" x="694" y="876" text-anchor="end">crea / consulta</text>
-<path class="dep" d="M700,904 H370 V832 H150.0 V803"/>
-<text class="reltxt" x="156.0" y="824">crea / consulta</text>
-<path class="dep" d="M1150,620 V590 H1545 V153.5 H1131"/>
-<text class="reltxt" transform="translate(1557,371.75) rotate(90)" text-anchor="middle">vehiculoDesdeFila() / servicioDesdeFila() crean la hija correcta</text>
-<rect class="bd" x="1210" y="660" width="200" height="120" rx="6"/>
-<text class="nombre" x="1310" y="685" text-anchor="middle">MySQL · taller_icno</text>
-<text class="miembro" x="1226" y="708">• usuarios</text>
-<text class="miembro" x="1226" y="722">• vehiculos</text>
-<text class="miembro" x="1226" y="736">• servicios</text>
-<text class="miembro" x="1226" y="750">• cotizaciones</text>
-<text class="miembro" x="1226" y="764">• cotizacion_servicios</text>
-<path class="dep" d="M1170,720 H1209"/>
-<text class="reltxt" x="1172" y="714">PDO</text>
+  <svg width="2552" height="1551" viewBox="0 0 2552 1551" xmlns="http://www.w3.org/2000/svg">
+<rect class="attr" x="182" y="90" width="327" height="129"/>
+<rect class="met" x="182" y="219" width="327" height="148"/>
+<rect class="barra" x="182" y="90" width="327" height="44"/>
+<text class="nombre" x="345.5" y="119" text-anchor="middle">Servicio</text>
+<text class="miembro" x="196" y="160">- id: int</text>
+<text class="miembro" x="196" y="181">- descripcion: string</text>
+<text class="miembro" x="196" y="202">- costoBase: float</text>
+<line class="sep" x1="182" y1="219" x2="509" y2="219"/>
+<text class="miembro" x="196" y="245">+ __construct(id, descripcion, costoBase)</text>
+<text class="miembro" x="196" y="266">+ calcularCosto(): float</text>
+<text class="miembro" x="196" y="287">+ getTipo(): string</text>
+<text class="miembro" x="196" y="308">+ getId(): int / setId(id): void</text>
+<text class="miembro" x="196" y="329">+ getDescripcion() / setDescripcion(d)</text>
+<text class="miembro" x="196" y="350">+ getCostoBase() / setCostoBase(c)</text>
+<rect class="borde" x="182" y="90" width="327" height="277"/>
+<rect class="attr" x="1597" y="90" width="509" height="213"/>
+<rect class="met" x="1597" y="303" width="509" height="127"/>
+<rect class="barra" x="1597" y="90" width="509" height="44"/>
+<text class="nombre" x="1851.5" y="119" text-anchor="middle">Vehiculo</text>
+<text class="miembro" x="1611" y="160">- id: int</text>
+<text class="miembro" x="1611" y="181">- placas: string</text>
+<text class="miembro" x="1611" y="202">- marca: string</text>
+<text class="miembro" x="1611" y="223">- modelo: string</text>
+<text class="miembro" x="1611" y="244">- color: string</text>
+<text class="miembro" x="1611" y="265">- anio: int</text>
+<text class="miembro" x="1611" y="286">- kilometraje: int</text>
+<line class="sep" x1="1597" y1="303" x2="2106" y2="303"/>
+<text class="miembro" x="1611" y="329">+ __construct(id, placas, marca, modelo, color, anio, km)</text>
+<text class="miembro" x="1611" y="350">+ getFactor(): float</text>
+<text class="miembro" x="1611" y="371">+ getTipo(): string</text>
+<text class="miembro" x="1611" y="392">+ getId() / setId(id)   ...   getKilometraje() / setKilometraje(k)</text>
+<text class="miembro" x="1611" y="413">  (getter y setter de los 7 atributos)</text>
+<rect class="borde" x="1597" y="90" width="509" height="340"/>
+<rect class="attr" x="769" y="90" width="305" height="192"/>
+<rect class="met" x="769" y="282" width="305" height="190"/>
+<rect class="barra" x="769" y="90" width="305" height="44"/>
+<text class="nombre" x="921.5" y="119" text-anchor="middle">Cotizacion</text>
+<text class="miembro" x="783" y="160">- id: int</text>
+<text class="miembro" x="783" y="181">- vehiculo: Vehiculo</text>
+<text class="miembro" x="783" y="202">- servicios: Servicio[]</text>
+<text class="miembro" x="783" y="223">- total: float</text>
+<text class="miembro" x="783" y="244">- estado: string</text>
+<text class="miembro" x="783" y="265">- fecha: string</text>
+<line class="sep" x1="769" y1="282" x2="1074" y2="282"/>
+<text class="miembro" x="783" y="308">+ __construct(id, vehiculo, servicios,</text>
+<text class="miembro" x="783" y="329">              total, estado, fecha)</text>
+<text class="miembro" x="783" y="350">+ getId(): int</text>
+<text class="miembro" x="783" y="371">+ getVehiculo(): Vehiculo</text>
+<text class="miembro" x="783" y="392">+ getServicios(): Servicio[]</text>
+<text class="miembro" x="783" y="413">+ getTotal(): float</text>
+<text class="miembro" x="783" y="434">+ getEstado(): string</text>
+<text class="miembro" x="783" y="455">+ getFecha(): string</text>
+<rect class="borde" x="769" y="90" width="305" height="382"/>
+<rect class="attr" x="40" y="562" width="290" height="87"/>
+<rect class="met" x="40" y="649" width="290" height="127"/>
+<rect class="barra" x="40" y="562" width="290" height="44"/>
+<text class="nombre" x="185.0" y="591" text-anchor="middle">ServicioPreventivo</text>
+<text class="miembro" x="54" y="632">- kilometraje: int</text>
+<line class="sep" x1="40" y1="649" x2="330" y2="649"/>
+<text class="miembro" x="54" y="675">+ __construct(id, desc, costo, km)</text>
+<text class="miembro" x="54" y="696">+ calcularCosto(): float  «override»</text>
+<text class="miembro" x="54" y="717">+ getTipo(): string  «override»</text>
+<text class="miembro" x="54" y="738">+ getKilometraje(): int</text>
+<text class="miembro" x="54" y="759">+ setKilometraje(k): void</text>
+<rect class="borde" x="40" y="562" width="290" height="214"/>
+<rect class="attr" x="354" y="562" width="298" height="87"/>
+<rect class="met" x="354" y="649" width="298" height="127"/>
+<rect class="barra" x="354" y="562" width="298" height="44"/>
+<text class="nombre" x="503.0" y="591" text-anchor="middle">ServicioCorrectivo</text>
+<text class="miembro" x="368" y="632">- horasManoObra: int</text>
+<line class="sep" x1="354" y1="649" x2="652" y2="649"/>
+<text class="miembro" x="368" y="675">+ __construct(id, desc, costo, horas)</text>
+<text class="miembro" x="368" y="696">+ calcularCosto(): float  «override»</text>
+<text class="miembro" x="368" y="717">+ getTipo(): string  «override»</text>
+<text class="miembro" x="368" y="738">+ getHorasManoObra(): int</text>
+<text class="miembro" x="368" y="759">+ setHorasManoObra(h): void</text>
+<rect class="borde" x="354" y="562" width="298" height="214"/>
+<rect class="attr" x="1192" y="562" width="312" height="87"/>
+<rect class="met" x="1192" y="649" width="312" height="64"/>
+<rect class="barra" x="1192" y="562" width="312" height="44"/>
+<text class="nombre" x="1348.0" y="591" text-anchor="middle">Auto</text>
+<text class="miembro" x="1206" y="632">&#160;</text>
+<line class="sep" x1="1192" y1="649" x2="1504" y2="649"/>
+<text class="miembro" x="1206" y="675">+ getFactor(): float  «override»  = 1.0</text>
+<text class="miembro" x="1206" y="696">+ getTipo(): string  «override»</text>
+<rect class="borde" x="1192" y="562" width="312" height="151"/>
+<rect class="attr" x="1528" y="562" width="312" height="87"/>
+<rect class="met" x="1528" y="649" width="312" height="64"/>
+<rect class="barra" x="1528" y="562" width="312" height="44"/>
+<text class="nombre" x="1684.0" y="591" text-anchor="middle">Camioneta</text>
+<text class="miembro" x="1542" y="632">&#160;</text>
+<line class="sep" x1="1528" y1="649" x2="1840" y2="649"/>
+<text class="miembro" x="1542" y="675">+ getFactor(): float  «override»  = 1.3</text>
+<text class="miembro" x="1542" y="696">+ getTipo(): string  «override»</text>
+<rect class="borde" x="1528" y="562" width="312" height="151"/>
+<rect class="attr" x="1864" y="562" width="312" height="87"/>
+<rect class="met" x="1864" y="649" width="312" height="64"/>
+<rect class="barra" x="1864" y="562" width="312" height="44"/>
+<text class="nombre" x="2020.0" y="591" text-anchor="middle">Camion</text>
+<text class="miembro" x="1878" y="632">&#160;</text>
+<line class="sep" x1="1864" y1="649" x2="2176" y2="649"/>
+<text class="miembro" x="1878" y="675">+ getFactor(): float  «override»  = 1.6</text>
+<text class="miembro" x="1878" y="696">+ getTipo(): string  «override»</text>
+<rect class="borde" x="1864" y="562" width="312" height="151"/>
+<rect class="attr" x="2200" y="562" width="312" height="87"/>
+<rect class="met" x="2200" y="649" width="312" height="64"/>
+<rect class="barra" x="2200" y="562" width="312" height="44"/>
+<text class="nombre" x="2356.0" y="591" text-anchor="middle">Motocicleta</text>
+<text class="miembro" x="2214" y="632">&#160;</text>
+<line class="sep" x1="2200" y1="649" x2="2512" y2="649"/>
+<text class="miembro" x="2214" y="675">+ getFactor(): float  «override»  = 0.7</text>
+<text class="miembro" x="2214" y="696">+ getTipo(): string  «override»</text>
+<rect class="borde" x="2200" y="562" width="312" height="151"/>
+<rect class="attr" x="722" y="562" width="400" height="87"/>
+<rect class="met" x="722" y="649" width="400" height="484"/>
+<rect class="barra" x="722" y="562" width="400" height="44"/>
+<text class="nombre" x="922.0" y="591" text-anchor="middle">Taller</text>
+<text class="miembro" x="736" y="632">- bd: PDO   (conexion a MySQL)</text>
+<line class="sep" x1="722" y1="649" x2="1122" y2="649"/>
+<text class="miembro" x="736" y="675">+ __construct(bd)</text>
+<text class="miembro" x="736" y="696">+ registrarCliente(nombre, correo, clave): bool</text>
+<text class="miembro" x="736" y="717">+ verificarLogin(correo, clave): Usuario</text>
+<text class="miembro" x="736" y="738">+ buscarUsuarioPorId(id): Usuario</text>
+<text class="miembro" x="736" y="759">+ buscarUsuarioPorCorreo(correo): Usuario</text>
+<text class="miembro" x="736" y="780">+ agregarVehiculo(idUsuario, vehiculo, tipo): void</text>
+<text class="miembro" x="736" y="801">+ getVehiculosDeUsuario(id): Vehiculo[]</text>
+<text class="miembro" x="736" y="822">+ getTodosVehiculos(): array</text>
+<text class="miembro" x="736" y="843">+ buscarVehiculo(id): Vehiculo</text>
+<text class="miembro" x="736" y="864">+ agregarServicio(servicio): void        «CREATE»</text>
+<text class="miembro" x="736" y="885">+ getServicios(): Servicio[]             «READ»</text>
+<text class="miembro" x="736" y="906">+ buscarServicio(id): Servicio           «READ»</text>
+<text class="miembro" x="736" y="927">+ modificarServicio(id, desc, costo): bool «UPDATE»</text>
+<text class="miembro" x="736" y="948">+ eliminarServicio(id): bool             «DELETE»</text>
+<text class="miembro" x="736" y="969">+ crearCotizacion(idUsuario, idVehiculo, ids): int</text>
+<text class="miembro" x="736" y="990">+ getCotizacionesDeUsuario(id): Cotizacion[]</text>
+<text class="miembro" x="736" y="1011">+ getTodasCotizaciones(): array</text>
+<text class="miembro" x="736" y="1032">+ marcarRevisada(idCotizacion): void</text>
+<text class="miembro" x="736" y="1053">- usuarioDesdeFila(f): Usuario</text>
+<text class="miembro" x="736" y="1074">- vehiculoDesdeFila(f): Vehiculo</text>
+<text class="miembro" x="736" y="1095">- servicioDesdeFila(f): Servicio</text>
+<text class="miembro" x="736" y="1116">- cotizacionDesdeFila(f): Cotizacion</text>
+<rect class="borde" x="722" y="562" width="400" height="571"/>
+<rect class="attr" x="572" y="1213" width="305" height="150"/>
+<rect class="met" x="572" y="1363" width="305" height="148"/>
+<rect class="barra" x="572" y="1213" width="305" height="44"/>
+<text class="nombre" x="724.5" y="1242" text-anchor="middle">Usuario</text>
+<text class="miembro" x="586" y="1283">- id: int</text>
+<text class="miembro" x="586" y="1304">- nombre: string</text>
+<text class="miembro" x="586" y="1325">- correo: string</text>
+<text class="miembro" x="586" y="1346">- rol: string  (admin | cliente)</text>
+<line class="sep" x1="572" y1="1363" x2="877" y2="1363"/>
+<text class="miembro" x="586" y="1389">+ __construct(id, nombre, correo, rol)</text>
+<text class="miembro" x="586" y="1410">+ esAdmin(): bool</text>
+<text class="miembro" x="586" y="1431">+ getId(): int</text>
+<text class="miembro" x="586" y="1452">+ getNombre(): string</text>
+<text class="miembro" x="586" y="1473">+ getCorreo(): string</text>
+<text class="miembro" x="586" y="1494">+ getRol(): string</text>
+<rect class="borde" x="572" y="1213" width="305" height="298"/>
+<rect class="bd" x="1022" y="1213" width="250" height="171" rx="4"/>
+<rect class="bdbarra" x="1022" y="1213" width="250" height="44"/>
+<text class="nombre" x="1147" y="1242" text-anchor="middle">MySQL · taller_icno</text>
+<text class="miembro" x="1036" y="1283">• usuarios</text>
+<text class="miembro" x="1036" y="1304">• vehiculos</text>
+<text class="miembro" x="1036" y="1325">• servicios</text>
+<text class="miembro" x="1036" y="1346">• cotizaciones</text>
+<text class="miembro" x="1036" y="1367">• cotizacion_servicios</text>
+<line class="rel" x1="185.0" y1="464.5" x2="503.0" y2="464.5"/>
+<line class="rel" x1="185.0" y1="562" x2="185.0" y2="464.5"/>
+<line class="rel" x1="503.0" y1="562" x2="503.0" y2="464.5"/>
+<line class="rel" x1="345.5" y1="464.5" x2="345.5" y2="383"/>
+<polygon class="tri" points="345.5,367 335.5,383 355.5,383"/>
+<line class="rel" x1="1348.0" y1="496.0" x2="2356.0" y2="496.0"/>
+<line class="rel" x1="1348.0" y1="562" x2="1348.0" y2="496.0"/>
+<line class="rel" x1="1684.0" y1="562" x2="1684.0" y2="496.0"/>
+<line class="rel" x1="2020.0" y1="562" x2="2020.0" y2="496.0"/>
+<line class="rel" x1="2356.0" y1="562" x2="2356.0" y2="496.0"/>
+<line class="rel" x1="1851.5" y1="496.0" x2="1851.5" y2="446"/>
+<polygon class="tri" points="1851.5,430 1841.5,446 1861.5,446"/>
+<text class="etq" x="344.0" y="456.5" text-anchor="middle">extends</text>
+<text class="etq" x="1852.0" y="488.0" text-anchor="middle">extends</text>
+<line class="rel" x1="769" y1="240" x2="509" y2="240"/>
+<polygon class="rombo" points="769,240 759,233 749,240 759,247"/>
+<text class="mult" x="513" y="232" text-anchor="start">1..*</text>
+<text class="mult" x="743" y="232" text-anchor="end">1</text>
+<text class="etq" x="639.0" y="260" text-anchor="middle">incluye servicios</text>
+<line class="rel" x1="1074" y1="240" x2="1597" y2="240"/>
+<polygon class="rombo" points="1074,240 1084,233 1094,240 1084,247"/>
+<text class="mult" x="1100" y="232" text-anchor="start">1</text>
+<text class="mult" x="1593" y="232" text-anchor="end">1</text>
+<text class="etq" x="1335.5" y="260" text-anchor="middle">es para un vehiculo</text>
+<line class="dep" x1="921.5" y1="562" x2="921.5" y2="486"/>
+<polygon class="flecha" points="921.5,472 915.5,484 927.5,484"/>
+<text class="etq" x="931.5" y="521.0">crea / consulta</text>
+<line class="dep" x1="722" y1="632" x2="666" y2="632"/>
+<polygon class="flecha" points="652,632 664,626 664,638"/>
+<text class="etq" x="687.0" y="622" text-anchor="middle">crea</text>
+<text class="etq" x="687.0" y="652" text-anchor="middle">la hija</text>
+<line class="dep" x1="1122" y1="632" x2="1178" y2="632"/>
+<polygon class="flecha" points="1192,632 1180,626 1180,638"/>
+<text class="etq" x="1157.0" y="622" text-anchor="middle">crea</text>
+<text class="etq" x="1157.0" y="652" text-anchor="middle">la hija</text>
+<line class="dep" x1="772" y1="1133" x2="772" y2="1199"/>
+<polygon class="flecha" points="772,1213 766,1201 778,1201"/>
+<text class="etq" x="782" y="1177.0">crea / consulta</text>
+<line class="rel" x1="1072" y1="1133" x2="1072" y2="1213"/>
+<text class="etq" x="1082" y="1177.0">PDO (consultas preparadas)</text>
   </svg>
   <p class="leyenda">
-    <b>Notaci&oacute;n:</b> &minus; atributo private &middot; + m&eacute;todo public &middot; flecha con tri&aacute;ngulo hueco = herencia (<i>extends</i>) &middot;
-    rombo relleno = composici&oacute;n (Cotizacion contiene un Vehiculo y una lista de Servicio) &middot; l&iacute;nea punteada = dependencia (Taller crea y consulta los objetos).<br>
-    <b>Polimorfismo:</b> <i>calcularCosto()</i> se reescribe en ServicioPreventivo (&times;0.9) y ServicioCorrectivo (+250 por hora);
-    <i>getFactor()</i> se reescribe en Auto (1.0), Camioneta (1.3), Camion (1.6) y Motocicleta (0.7). El total de una cotizaci&oacute;n = &Sigma; calcularCosto() &times; getFactor().
+    <b>Notaci&oacute;n:</b> &minus; privado &middot; + p&uacute;blico &middot; tri&aacute;ngulo hueco = herencia (<i>extends</i>) &middot;
+    rombo relleno = composici&oacute;n (Cotizacion contiene un Vehiculo y una lista de Servicio) &middot; l&iacute;nea punteada = dependencia (Taller crea y consulta los objetos) &middot;
+    &laquo;override&raquo; = m&eacute;todo reescrito con <code>#[\Override]</code>.<br>
+    <b>Polimorfismo:</b> <i>calcularCosto()</i> en ServicioPreventivo (&times;0.9) y ServicioCorrectivo (+250 por hora);
+    <i>getFactor()</i> en Auto (1.0), Camioneta (1.3), Camion (1.6) y Motocicleta (0.7). Total de una cotizaci&oacute;n = &Sigma; calcularCosto() &times; getFactor().
   </p>
 </div>
 </body>
