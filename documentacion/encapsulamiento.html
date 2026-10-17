@@ -4,163 +4,174 @@
 <meta charset="UTF-8">
 <title>Encapsulamiento - Taller ICNO</title>
 <style>
-    @page { size: letter; margin: 1.6cm 1.7cm; }
+    /* Una sola hoja: el PDF se genera del tamano exacto de este contenido. */
     * { box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; margin: 0; line-height: 1.5; background: #fff; }
-    .hoja { max-width: 18.2cm; margin: 0 auto; }
-    table, pre, .caja, h2, h3 { page-break-inside: avoid; break-inside: avoid; }
-    h2, h3 { page-break-after: avoid; break-after: avoid; }
-    tr { page-break-inside: avoid; break-inside: avoid; }
-    .cabecera { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 6px; margin-bottom: 10px; }
-    .cabecera img { width: 42px; height: 42px; border-radius: 50%; }
-    .cabecera .t { font-size: 20px; font-weight: 800; color: #1e3a8a; }
-    .cabecera .s { font-size: 12px; color: #64748b; }
-    h2 { color: #1e3a8a; font-size: 15.5px; margin: 16px 0 6px; border-bottom: 2px solid #e2e8f0; padding-bottom: 3px; }
-    h3 { color: #0f172a; font-size: 13px; margin: 9px 0 3px; }
-    p, li { margin: 4px 0; font-size: 12.2px; line-height: 1.5; }
-    ul { margin: 3px 0 3px 18px; padding: 0; }
-    code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 11.6px; font-family: Consolas, monospace; }
-    pre { background: #f1f5f9; border-left: 4px solid #1e3a8a; border-radius: 6px; padding: 6px 10px; font-size: 10.8px; font-family: Consolas, monospace; margin: 6px 0; line-height: 1.38; white-space: pre; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; margin: 0; background: #fff; }
+    .hoja { width: 1240px; padding: 34px 40px 30px; margin: 0 auto; }
+    .cabecera { display: flex; align-items: center; gap: 14px; border-bottom: 3px solid #1e3a8a; padding-bottom: 10px; margin-bottom: 16px; }
+    .cabecera img { width: 54px; height: 54px; border-radius: 50%; }
+    .cabecera .t { font-size: 26px; font-weight: 800; color: #1e3a8a; line-height: 1.1; }
+    .cabecera .s { font-size: 13px; color: #64748b; margin-top: 3px; }
+    .cabecera .s b { color: #1e3a8a; }
+    .intro { background: #eef2ff; border-left: 5px solid #1e3a8a; border-radius: 6px; padding: 9px 14px; font-size: 13.2px; line-height: 1.5; margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+    .col { display: flex; flex-direction: column; gap: 16px; }
+    .bloque { break-inside: avoid; }
+    h2 { color: #1e3a8a; font-size: 15px; margin: 0 0 6px; padding-bottom: 3px; border-bottom: 2px solid #e2e8f0; }
+    h2 span { display: inline-block; background: #1e3a8a; color: #fff; border-radius: 50%; width: 21px; height: 21px; line-height: 21px; text-align: center; font-size: 12px; margin-right: 6px; }
+    p, li { margin: 3px 0; font-size: 12.3px; line-height: 1.45; }
+    ul { margin: 2px 0 0 16px; padding: 0; }
+    code { background: #f1f5f9; padding: 0 4px; border-radius: 4px; font-size: 11.5px; font-family: Consolas, monospace; white-space: nowrap; }
+    pre { background: #f1f5f9; border-left: 4px solid #1e3a8a; border-radius: 6px; padding: 7px 10px; font-size: 11px; font-family: Consolas, monospace; margin: 6px 0; line-height: 1.38; }
     pre .c { color: #64748b; }
     pre .k { color: #1e3a8a; font-weight: 700; }
-    table { width: 100%; border-collapse: collapse; font-size: 11.4px; margin: 5px 0; }
-    th, td { border: 1px solid #cbd5e1; padding: 3px 6px; text-align: left; vertical-align: top; }
+    table { width: 100%; border-collapse: collapse; font-size: 11.6px; margin: 4px 0; }
+    th, td { border: 1px solid #cbd5e1; padding: 3px 7px; text-align: left; vertical-align: top; line-height: 1.35; }
     th { background: #e8edf7; color: #1e3a8a; }
-    .ok { color: #166534; font-weight: 700; }
-    .mal { color: #991b1b; font-weight: 700; }
-    .caja { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 6px 10px; margin: 8px 0; font-size: 12px; }
-    .pie { position: absolute; }
+    .ok { color: #166534; font-weight: 600; }
+    .mal { color: #991b1b; font-weight: 600; }
+    .resumen { margin-top: 16px; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px 14px; display: flex; gap: 22px; align-items: center; }
+    .resumen .num { text-align: center; min-width: 78px; }
+    .resumen .num b { display: block; font-size: 24px; color: #1e3a8a; line-height: 1; }
+    .resumen .num small { font-size: 11px; color: #64748b; }
+    .resumen p { font-size: 12.3px; }
 </style>
 </head>
 <body>
-
-<!-- ======================= HOJA 1 ======================= -->
 <div class="hoja">
+
     <div class="cabecera">
         <img src="../img/logo.png" alt="Logo">
         <div>
             <div class="t">Encapsulamiento en Taller ICNO</div>
-            <div class="s">Proyecto Final de Programaci&oacute;n Orientada a Objetos &middot; Isaac Navarro &middot; C&oacute;digo en <b>inc/taller.php</b></div>
+            <div class="s">Proyecto Final de Programaci&oacute;n Orientada a Objetos &middot; Autor: Isaac Navarro &middot; Todo el c&oacute;digo de las clases est&aacute; en <b>inc/taller.php</b></div>
         </div>
     </div>
 
-    <h2>1. Qu&eacute; es el encapsulamiento y por qu&eacute; lo usamos</h2>
-    <p>Encapsular es <b>guardar los datos de un objeto bajo llave</b> y dejar que solo se lean o cambien por m&eacute;todos que la
-    propia clase ofrece. Los atributos se declaran <code>private</code>, as&iacute; que ninguna p&aacute;gina del sistema puede hacer
-    <code>$servicio->costoBase = -5;</code>: PHP lo rechaza con un error. Para leer se usa un <b>getter</b> (<code>getCostoBase()</code>)
-    y para cambiar un <b>setter</b> (<code>setCostoBase()</code>). La ventaja es que el objeto siempre controla su propio estado: si
-    ma&ntilde;ana hay que validar un dato, se hace en un solo lugar y todo el sistema queda protegido.</p>
+    <div class="intro"><b>Qu&eacute; es.</b> Encapsular es guardar los datos de un objeto bajo llave: los atributos se declaran <code>private</code> y solo se leen con un
+    <b>getter</b> (<code>getCostoBase()</code>) o se cambian con un <b>setter</b> (<code>setCostoBase()</code>). Si una p&aacute;gina intenta <code>$servicio->costoBase = -5;</code>,
+    PHP lo rechaza. As&iacute; el objeto siempre controla su propio estado y, si hay que validar un dato, se hace en un solo lugar.</div>
 
-    <h2>2. C&oacute;mo est&aacute; aplicado: las tres reglas que cumplen las once clases</h2>
-    <table>
-        <tr><th style="width:30%">Regla</th><th>C&oacute;mo se ve en el c&oacute;digo</th></tr>
-        <tr><td><b>a)</b> Todos los atributos son <code>private</code></td><td>Las 11 clases declaran sus atributos con <code>private $nombre;</code>. No hay ning&uacute;n atributo <code>public</code> en el proyecto.</td></tr>
-        <tr><td><b>b)</b> Acceso solo por getters y setters</td><td>Cada atributo que se necesita afuera tiene su <code>getX()</code>; los que pueden cambiar tienen adem&aacute;s su <code>setX()</code>.</td></tr>
-        <tr><td><b>c)</b> Se usa <code>$this</code> dentro de la clase</td><td>Constructores, getters y setters escriben <code>$this->atributo</code>, es decir, "el dato de <i>este</i> objeto", no de otro.</td></tr>
-    </table>
+    <div class="grid">
+        <div class="col">
+<div class="bloque">
+            <h2><span>1</span>Las tres reglas que cumplen las 11 clases</h2>
+            <table>
+                <tr><th style="width:36%">Regla</th><th>En el c&oacute;digo</th></tr>
+                <tr><td><b>a)</b> Atributos <code>private</code></td><td>Las 11 clases declaran <code>private $x;</code>. No existe ning&uacute;n atributo <code>public</code>.</td></tr>
+                <tr><td><b>b)</b> Acceso por getters y setters</td><td>Cada atributo tiene su <code>getX()</code>; los que pueden cambiar tienen tambi&eacute;n <code>setX()</code>.</td></tr>
+                <tr><td><b>c)</b> <code>$this</code> dentro de la clase</td><td>Constructores, getters y setters escriben <code>$this->x</code>: "el dato de <i>este</i> objeto".</td></tr>
+            </table>
+        </div>
 
-    <h3>Ejemplo completo: la clase <code>Servicio</code> (l&iacute;neas 28 a 54)</h3>
+<div class="bloque">
+            <h2><span>3</span>El mismo patr&oacute;n en todas las clases</h2>
+            <table>
+                <tr><th style="width:27%">Clase</th><th style="width:40%">Atributos privados</th><th>Getters / setters</th></tr>
+                <tr><td>Servicio</td><td>id, descripcion, costoBase</td><td>getter y setter de los 3</td></tr>
+                <tr><td>ServicioPreventivo</td><td>kilometraje</td><td>getKilometraje / setKilometraje</td></tr>
+                <tr><td>ServicioCorrectivo</td><td>horasManoObra</td><td>getHorasManoObra / setHorasManoObra</td></tr>
+                <tr><td>Vehiculo</td><td>id, placas, marca, modelo, color, anio, kilometraje</td><td>getter y setter de los 7 (l&iacute;neas 118 a 131)</td></tr>
+                <tr><td>Auto, Camioneta, Camion, Motocicleta</td><td>ninguno propio</td><td>heredan los de Vehiculo</td></tr>
+                <tr><td>Usuario</td><td>id, nombre, correo, rol</td><td>solo getters, a prop&oacute;sito</td></tr>
+                <tr><td>Cotizacion</td><td>id, vehiculo, servicios, total, estado, fecha</td><td>solo getters, a prop&oacute;sito</td></tr>
+                <tr><td>Taller</td><td>bd (conexi&oacute;n PDO)</td><td>ninguno: nunca sale de la clase</td></tr>
+            </table>
+        </div>
+
+<div class="bloque">
+            <h2><span>5</span>Decisiones de dise&ntilde;o: no todo tiene setter</h2>
+            <ul>
+                <li><b>Usuario</b> no tiene setters: nadie puede "ascenderse" con <code>$u->setRol('admin')</code>. El rol solo lo pone la base de datos.</li>
+                <li><b>Cotizacion</b> es un comprobante: total y servicios no se editan. Para marcarla revisada se usa <code>Taller->marcarRevisada()</code>.</li>
+                <li><b>Taller</b> guarda la conexi&oacute;n <code>$bd</code> privada y <b>sin getter</b>: ninguna p&aacute;gina puede escribir SQL por su cuenta.</li>
+                <li>Los m&eacute;todos <code>*DesdeFila()</code> son <code>private</code>: convertir una fila SQL en objeto es asunto interno de Taller.</li>
+            </ul>
+        </div>
+
+<div class="bloque">
+            <h2><span>7</span>Flujo de un dato, de la base al navegador</h2>
+            <table>
+                <tr><th style="width:4%">#</th><th style="width:36%">Paso</th><th>Qui&eacute;n y con qu&eacute;</th></tr>
+                <tr><td>1</td><td>La p&aacute;gina pide el cat&aacute;logo</td><td><code>$taller->getServicios()</code></td></tr>
+                <tr><td>2</td><td>Taller consulta MySQL</td><td><code>$this->bd</code> privado, <code>prepare()</code> con <code>?</code></td></tr>
+                <tr><td>3</td><td>Cada fila se vuelve objeto</td><td><code>servicioDesdeFila()</code> hace <code>new</code> y el constructor llena los privados con <code>$this</code></td></tr>
+                <tr><td>4</td><td>La p&aacute;gina recibe objetos</td><td>Solo usa <code>getDescripcion()</code>, <code>calcularCosto()</code>...</td></tr>
+                <tr><td>5</td><td>El admin edita</td><td><code>$taller->modificarServicio($id,$d,$c)</code> hace el UPDATE</td></tr>
+            </table>
+        </div>
+        </div>
+        <div class="col">
+<div class="bloque">
+            <h2><span>2</span>Ejemplo real: clase Servicio (l&iacute;neas 28 a 54)</h2>
 <pre><span class="k">class</span> Servicio {
-    <span class="k">private</span> $id;            <span class="c">// Nadie fuera de la clase puede tocarlo directo.</span>
-    <span class="k">private</span> $descripcion;
-    <span class="k">private</span> $costoBase;
-
+    <span class="k">private</span> $id;  <span class="k">private</span> $descripcion;  <span class="k">private</span> $costoBase;   <span class="c">// Bajo llave.</span>
     <span class="k">public function</span> __construct($id, $descripcion, $costoBase) {
-        $this->id = $id;                     <span class="c">// $this = "este objeto en particular".</span>
+        $this->id = $id;                        <span class="c">// $this = este objeto.</span>
         $this->descripcion = $descripcion;
         $this->costoBase = $costoBase;
     }
-    <span class="k">public function</span> getCostoBase() { <span class="k">return</span> $this->costoBase; }              <span class="c">// Getter: lectura controlada.</span>
-    <span class="k">public function</span> setCostoBase($costoBase) { $this->costoBase = $costoBase; } <span class="c">// Setter: cambio controlado.</span>
-    <span class="k">public function</span> getDescripcion() { <span class="k">return</span> $this->descripcion; }
-    <span class="k">public function</span> setDescripcion($d) { $this->descripcion = $d; }
-    <span class="k">public function</span> getId() { <span class="k">return</span> $this->id; }
-    <span class="k">public function</span> setId($id) { $this->id = $id; }
+    <span class="k">public function</span> getCostoBase() { <span class="k">return</span> $this->costoBase; }    <span class="c">// Getter</span>
+    <span class="k">public function</span> setCostoBase($c) { $this->costoBase = $c; }      <span class="c">// Setter</span>
+    <span class="c">// ... igual para id y descripcion (getId/setId, getDescripcion/setDescripcion)</span>
 }</pre>
+        </div>
 
-    <h3>El mismo patr&oacute;n en el resto de las clases</h3>
-    <table>
-        <tr><th style="width:21%">Clase</th><th style="width:40%">Atributos privados</th><th>Getters / setters</th></tr>
-        <tr><td>Servicio</td><td>id, descripcion, costoBase</td><td>getter y setter de los 3</td></tr>
-        <tr><td>ServicioPreventivo</td><td>kilometraje</td><td>getKilometraje / setKilometraje</td></tr>
-        <tr><td>ServicioCorrectivo</td><td>horasManoObra</td><td>getHorasManoObra / setHorasManoObra</td></tr>
-        <tr><td>Vehiculo</td><td>id, placas, marca, modelo, color, anio, kilometraje</td><td>getter y setter de los 7 (l&iacute;neas 118 a 131)</td></tr>
-        <tr><td>Auto, Camioneta, Camion, Motocicleta</td><td>ninguno propio; heredan los 7 de Vehiculo</td><td>heredan los getters y setters del padre</td></tr>
-        <tr><td>Usuario</td><td>id, nombre, correo, rol</td><td>solo getters (ver secci&oacute;n 3)</td></tr>
-        <tr><td>Cotizacion</td><td>id, vehiculo, servicios, total, estado, fecha</td><td>solo getters (ver secci&oacute;n 3)</td></tr>
-        <tr><td>Taller</td><td>bd (la conexi&oacute;n PDO)</td><td>ninguno: la conexi&oacute;n nunca sale de la clase</td></tr>
-    </table>
+<div class="bloque">
+            <h2><span>4</span>Las hijas tambi&eacute;n respetan lo privado del padre</h2>
+            <p>Como <code>$costoBase</code> es privado en <code>Servicio</code>, ni sus hijas lo ven directo. <code>ServicioPreventivo</code> calcula con el
+            getter del padre, y en su constructor lo del padre lo guarda el padre con <code>parent::__construct()</code>:</p>
+<pre>#[\Override] <span class="k">public function</span> calcularCosto() { <span class="k">return</span> $this->getCostoBase() * 0.9; }  <span class="c">// linea 66</span></pre>
+        </div>
 
-    <h3>Las hijas tambi&eacute;n respetan lo privado del padre</h3>
-    <p>Como <code>$costoBase</code> es <code>private</code> en <code>Servicio</code>, ni siquiera sus hijas lo ven directo. Por eso
-    <code>ServicioPreventivo</code> calcula su costo con el getter del padre y no con el atributo:</p>
-<pre>#[\Override] <span class="k">public function</span> calcularCosto() { <span class="k">return</span> $this->getCostoBase() * 0.9; }   <span class="c">// linea 66</span></pre>
-    <p>Y en el constructor de la hija, lo del padre lo guarda el padre con <code>parent::__construct()</code>; la hija solo guarda
-    lo suyo (<code>$this->kilometraje</code>). Cada clase es due&ntilde;a &uacute;nicamente de sus propios datos.</p>
-
-    <h2>3. Decisiones de dise&ntilde;o: no todo tiene setter a prop&oacute;sito</h2>
-    <p>El encapsulamiento no es solo poner <code>private</code> y luego regalar un setter para todo. Tambi&eacute;n es decidir
-    <b>qu&eacute; se puede cambiar y qu&eacute; no</b>:</p>
-    <ul>
-        <li><b>Usuario</b> tiene getters pero ning&uacute;n setter. Un usuario no cambia de id, correo ni rol desde las p&aacute;ginas; eso solo
-        lo hace la base de datos. As&iacute; nadie puede "ascenderse" a admin escribiendo <code>$u->setRol('admin')</code>.</li>
-        <li><b>Cotizacion</b> tampoco tiene setters. Una vez calculada es un comprobante: su total y sus servicios no se
-        editan. Para marcarla como revisada se usa <code>Taller->marcarRevisada()</code>, que actualiza la base de datos.</li>
-        <li><b>Taller</b> guarda la conexi&oacute;n <code>$bd</code> privada y <b>sin getter</b>. Ninguna p&aacute;gina puede obtener la conexi&oacute;n
-        ni escribir SQL por su cuenta. Es la forma m&aacute;s fuerte de encapsular: el dato existe, pero solo la clase lo usa.</li>
-        <li>Los m&eacute;todos <code>usuarioDesdeFila()</code>, <code>vehiculoDesdeFila()</code>, <code>servicioDesdeFila()</code> y
-        <code>cotizacionDesdeFila()</code> son <code>private</code>. Convertir una fila SQL en objeto es un detalle interno de Taller;
-        las p&aacute;ginas solo reciben objetos ya armados.</li>
-    </ul>
-
-    <h2>4. C&oacute;mo trabajan las p&aacute;ginas con los objetos</h2>
-    <p>Las p&aacute;ginas PHP (<code>servicios.php</code>, <code>cotizar.php</code>, <code>mis_cotizaciones.php</code>, etc.) nunca ven
-    atributos ni tablas. Solo llaman m&eacute;todos p&uacute;blicos. Ejemplos reales:</p>
-<pre><span class="c">// servicios.php, lineas 157 a 165: la tabla del CRUD se dibuja con getters.</span>
+<div class="bloque">
+            <h2><span>6</span>C&oacute;mo trabajan las p&aacute;ginas: solo m&eacute;todos p&uacute;blicos</h2>
+<pre><span class="c">// servicios.php 157-165: la tabla del CRUD se dibuja con getters.</span>
 &lt;td&gt;&lt;?php echo $s->getId(); ?&gt;&lt;/td&gt;
-&lt;td&gt;&lt;?php echo $s->getTipo(); ?&gt;&lt;/td&gt;
 &lt;td&gt;&lt;?php echo htmlspecialchars($s->getDescripcion()); ?&gt;&lt;/td&gt;
 &lt;td&gt;$&lt;?php echo number_format($s->getCostoBase(), 2); ?&gt;&lt;/td&gt;
 
-<span class="c">// cotizar.php, linea 34: el subtotal sale de dos metodos, sin tocar un solo atributo.</span>
+<span class="c">// cotizar.php 34: el subtotal sale de dos metodos, sin tocar atributos.</span>
 $sub = $s->calcularCosto() * $vehiculo->getFactor();
 
-<span class="c">// mis_cotizaciones.php, linea 24: la cotizacion entrega su vehiculo como objeto, y ese objeto entrega sus datos.</span>
-$v = $c->getVehiculo();   echo $v->getMarca() . ' ' . $v->getModelo();</pre>
+<span class="c">// mis_cotizaciones.php 24: la cotizacion entrega su vehiculo como objeto.</span>
+$v = $c->getVehiculo();  echo $v->getMarca() . ' ' . $v->getModelo();</pre>
+        </div>
 
-    <h3>El flujo completo de un dato, de la base al navegador</h3>
-    <table>
-        <tr><th style="width:5%">#</th><th style="width:38%">Paso</th><th>Qui&eacute;n lo hace y con qu&eacute;</th></tr>
-        <tr><td>1</td><td>La p&aacute;gina pide el cat&aacute;logo</td><td><code>$taller->getServicios()</code> (m&eacute;todo p&uacute;blico de Taller)</td></tr>
-        <tr><td>2</td><td>Taller consulta MySQL</td><td>Usa su <code>$this->bd</code> privado con <code>prepare()</code> y par&aacute;metros <code>?</code></td></tr>
-        <tr><td>3</td><td>Cada fila se vuelve objeto</td><td><code>servicioDesdeFila()</code> (privado) crea un ServicioPreventivo o ServicioCorrectivo con <code>new</code>; el constructor llena los atributos privados con <code>$this</code></td></tr>
-        <tr><td>4</td><td>La p&aacute;gina recibe una lista de objetos</td><td>Solo puede usar getters: <code>getDescripcion()</code>, <code>getCostoBase()</code>, <code>calcularCosto()</code></td></tr>
-        <tr><td>5</td><td>El admin edita un servicio</td><td>El formulario env&iacute;a los datos y la p&aacute;gina llama <code>$taller->modificarServicio($id, $desc, $costo)</code>; Taller hace el UPDATE</td></tr>
-    </table>
+<div class="bloque">
+            <h2><span>8</span>Encapsulamiento a nivel de sistema</h2>
+            <ul>
+                <li><b>Contrase&ntilde;as:</b> <code>password_hash()</code> y <code>password_verify()</code>. Usuario ni siquiera tiene atributo de contrase&ntilde;a.</li>
+                <li><b>Credenciales:</b> en <code>inc/config.php</code>, fuera del repositorio y bloqueado por Apache (403).</li>
+                <li><b>Sesi&oacute;n:</b> solo guarda el id; <code>exigirRol()</code> pregunta al objeto con <code>esAdmin()</code>.</li>
+                <li><b>Salida HTML:</b> todo texto del usuario pasa por <code>htmlspecialchars()</code>.</li>
+            </ul>
+        </div>
 
-    <h2>5. Encapsulamiento a nivel de sistema</h2>
-    <ul>
-        <li><b>Contrase&ntilde;as:</b> se guardan con <code>password_hash()</code> y se comparan con <code>password_verify()</code>. La clase
-        Usuario ni siquiera tiene un atributo de contrase&ntilde;a: el dato m&aacute;s sensible no sale nunca de la base.</li>
-        <li><b>Credenciales de la base:</b> viven en <code>inc/config.php</code>, archivo fuera del repositorio (<code>.gitignore</code>) y
-        bloqueado por Apache (HTTP 403). El c&oacute;digo p&uacute;blico no contiene secretos.</li>
-        <li><b>Sesi&oacute;n:</b> solo se guarda el id del usuario; cada p&aacute;gina reconstruye el objeto con <code>usuarioActual()</code> y
-        <code>exigirRol()</code> decide si puede entrar. La p&aacute;gina no decide, el objeto Usuario responde con <code>esAdmin()</code>.</li>
-        <li><b>Salida HTML:</b> todo texto que viene del usuario pasa por <code>htmlspecialchars()</code> al mostrarse.</li>
-    </ul>
+<div class="bloque">
+            <h2><span>9</span>Lo que se gana</h2>
+            <table>
+                <tr><th style="width:38%">Sin encapsulamiento</th><th>Con encapsulamiento</th></tr>
+                <tr><td class="mal">$s->costoBase = "hola";</td><td class="ok">PHP lo impide; solo <code>setCostoBase()</code> cambia el dato.</td></tr>
+                <tr><td class="mal">SQL repartido en cada p&aacute;gina</td><td class="ok">Solo Taller conoce las tablas.</td></tr>
+                <tr><td class="mal">Un cliente cambia su rol</td><td class="ok">Usuario no tiene setRol().</td></tr>
+                <tr><td class="mal">Validar en 10 lugares</td><td class="ok">Validar una sola vez, en el setter.</td></tr>
+            </table>
+        </div>
+        </div>
 
-    <h2>6. Lo que se gana con esto</h2>
-    <table>
-        <tr><th style="width:34%">Sin encapsulamiento</th><th>Con encapsulamiento (como est&aacute; el proyecto)</th></tr>
-        <tr><td class="mal">$s->costoBase = "hola";</td><td class="ok">PHP lo impide: el atributo es private. Solo <code>setCostoBase()</code> puede cambiarlo.</td></tr>
-        <tr><td class="mal">Cada p&aacute;gina con su propio SQL</td><td class="ok">Solo Taller conoce las tablas. Cambiar una columna se arregla en un archivo.</td></tr>
-        <tr><td class="mal">Un cliente cambia su rol</td><td class="ok">Usuario no tiene setRol(); el rol solo lo pone la base de datos.</td></tr>
-        <tr><td class="mal">Validar en 10 lugares</td><td class="ok">Validar en el setter o en el m&eacute;todo de Taller, una sola vez.</td></tr>
-    </table>
 
-    <div class="caja"><b>Resumen para la revisi&oacute;n:</b> 11 clases, 0 atributos p&uacute;blicos, getters y setters con <code>$this</code> en todas,
-    setters omitidos a prop&oacute;sito donde el dato no debe cambiar, y la conexi&oacute;n a la base de datos privada y sin getter dentro de Taller.</div>
+    </div>
+
+    <div class="resumen">
+        <div class="num"><b>11</b><small>clases</small></div>
+        <div class="num"><b>0</b><small>atributos p&uacute;blicos</small></div>
+        <div class="num"><b>100%</b><small>con getters y $this</small></div>
+        <p><b>Resumen para la revisi&oacute;n:</b> todos los atributos son privados y se usan con getters y setters que escriben <code>$this</code>;
+        los setters se omiten a prop&oacute;sito donde el dato no debe cambiar (Usuario, Cotizacion); la conexi&oacute;n a la base de datos vive privada y sin getter
+        dentro de Taller, que es la &uacute;nica clase que escribe SQL. El resto del sistema trabaja solo con objetos y sus m&eacute;todos p&uacute;blicos.</p>
+    </div>
+
 </div>
-
 </body>
 </html>
