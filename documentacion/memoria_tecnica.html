@@ -71,8 +71,8 @@
     Cada hija llama a <code>parent::__construct()</code> para que el padre guarde lo suyo y no se repita c&oacute;digo.</p>
     <p>La segunda son los <b>veh&iacute;culos</b>: <code>Vehiculo</code> guarda placas, marca, modelo, color, a&ntilde;o y kilometraje, y
     sus cuatro hijas <code>Auto</code>, <code>Camioneta</code>, <code>Camion</code> y <code>Motocicleta</code> no agregan datos,
-    solo cambian el comportamiento. Esto muestra que heredar no es solo reutilizar atributos: es permitir que cada tipo
-    responda a su manera.</p>
+    solo cambian el comportamiento. Con esto se ve que heredar sirve para dos cosas: reutilizar lo que ya tiene el padre y dejar que
+    cada tipo responda a su manera.</p>
     <p>Esa respuesta distinta es el <b>polimorfismo</b>. <code>calcularCosto()</code> est&aacute; en <code>Servicio</code> y cada hija lo
     reescribe con <code>#[\Override]</code>: el preventivo aplica 10% de descuento y el correctivo suma 250 pesos por hora.
     <code>getFactor()</code> est&aacute; en <code>Vehiculo</code> y cada hija devuelve su factor: 1.0, 1.3, 1.6 y 0.7. Los dos se juntan
