@@ -4,3 +4,4 @@ inc/config.php
 Thumbs.db
 .DS_Store
 *.swp
+~$*
